@@ -20,31 +20,31 @@ public class TeacherUI extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
         // icon frame
-        ImageIcon iconTeacher = new ImageIcon("teacher.png");
+        ImageIcon iconTeacher = new ImageIcon("image/teacher.png");
         setIconImage(iconTeacher.getImage());
 
         JMenuBar menubar = new JMenuBar();
         setJMenuBar(menubar);
 
         newQuiz = new JMenu("New Quiz");
-        ImageIcon icNewQuiz = new ImageIcon("add.png");
+        ImageIcon icNewQuiz = new ImageIcon("image/add.png");
         newQuiz.setIcon(icNewQuiz);
         menubar.add(newQuiz);
 
         JMenuItem mc = new JMenuItem("Multiple Choice");
         mc.addActionListener(this);
-        ImageIcon icMC = new ImageIcon("option.png");
+        ImageIcon icMC = new ImageIcon("image/option.png");
         mc.setIcon(icMC);
         newQuiz.add(mc);
 
         JMenuItem answerFilling = new JMenuItem("Answer Filling");
         answerFilling.addActionListener(this);
-        ImageIcon icAnswerFilling = new ImageIcon("answer.png");
+        ImageIcon icAnswerFilling = new ImageIcon("image/answer.png");
         answerFilling.setIcon(icAnswerFilling);
         newQuiz.add(answerFilling);
 
         allQuiz = new JMenu("All Quiz");
-        ImageIcon iconAllQuiz = new ImageIcon("grid.png");
+        ImageIcon iconAllQuiz = new ImageIcon("image/grid.png");
         allQuiz.setIcon(iconAllQuiz);
         menubar.add(allQuiz);
         JMenuItem allquiz = new JMenuItem("All Quiz Created");
@@ -53,7 +53,7 @@ public class TeacherUI extends JFrame implements ActionListener {
         allQuiz.add(allquiz);
 
         stuRes = new JMenu("Student Result");
-        ImageIcon iconStuRes = new ImageIcon("medical-result.png");
+        ImageIcon iconStuRes = new ImageIcon("image/medical-result.png");
         stuRes.setIcon(iconStuRes);
         menubar.add(stuRes);
         JMenuItem stuResASItem = new JMenuItem("All Results");
@@ -62,7 +62,7 @@ public class TeacherUI extends JFrame implements ActionListener {
         stuRes.add(stuResASItem);
 
         logOut = new JMenu("Log Out");
-        ImageIcon iconLogOut = new ImageIcon("logout.png");
+        ImageIcon iconLogOut = new ImageIcon("image/logout.png");
         logOut.setIcon(iconLogOut);
         menubar.add(logOut);
         JMenuItem logOutItem = new JMenuItem("Log Out");
@@ -76,7 +76,7 @@ public class TeacherUI extends JFrame implements ActionListener {
         add(s);
         searchQuiz = new JTextField();
         searchQuiz.setBounds(350, 150, 200, 20);
-        ImageIcon icSearch = new ImageIcon("search-results_5358562.png");
+        ImageIcon icSearch = new ImageIcon("image/search-results_5358562.png");
         s.setIcon(icSearch);
         add(searchQuiz);
         search = new JButton("Search");

@@ -16,7 +16,7 @@ public class createQuizUI extends JFrame implements ActionListener {
     JComboBox comboBox;
     public createQuizUI(String s){
         this.s = s;
-        getContentPane().setBackground(new Color(0, 51, 102));
+        getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         // heading name
         JLabel heading = new JLabel("Quiz");
@@ -107,7 +107,7 @@ public class createQuizUI extends JFrame implements ActionListener {
             int totalscore = Integer.parseInt(total_score.getText());
             int totalquestion = Integer.parseInt(total_question.getText());
             double scorePerQuestion = totalscore / (double) totalquestion;
-            Quiz quiz = new Quiz(quizid, quizname, quiztype, totalscore, scorePerQuestion);
+            Quiz quiz = new Quiz(quizid, quizname, quiztype, totalscore, totalquestion);
             boolean isSuccess = QuizQuery.insert(quiz);
             if (e.getSource() == next){
                 if(quizID.getText().isEmpty() || quizName.getText().isEmpty() || total_score.getText().isEmpty() || total_question.getText().isEmpty()) {

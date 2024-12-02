@@ -1,10 +1,13 @@
 package View;
 
 import DAO.ConnectionDatabase;
+import Model.Quiz;
 import Model.Student;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -75,19 +78,20 @@ public class QuizSelectionScreen_student extends JFrame {
         // Start button action
         startButton.addActionListener(e -> {
             String selectedQuiz = quizList.getSelectedValue();
+
             if (selectedQuiz != null && quizIdMap.containsKey(selectedQuiz)) {
                 dispose();
                 if (Objects.equals(type, "multiplechoice"))
                 {
-                    new MultipleChoiceQuiz_student(quizIdMap.get(selectedQuiz), student);
+                    new MultipleChoiceQuiz_student(quizIdMap.get(selectedQuiz), student, new Quiz(quizIdMap.get(selectedQuiz)));
                 }
                 else
                 {
-                    new FillBlankQuiz_student(quizIdMap.get(selectedQuiz), student);
+                    new FillBlankQuiz_student(quizIdMap.get(selectedQuiz), student, new Quiz(quizIdMap.get(selectedQuiz)));
                 }
             }
         });
-
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -96,10 +100,10 @@ public class QuizSelectionScreen_student extends JFrame {
         quizIdMap = new HashMap<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT DISTINCT quizID, quiz_name, quiz_type FROM quiz");
+            ResultSet rs = stmt.executeQuery("SELECT DISTINCT quiz_id, quiz_name, quiz_type FROM quiztable");
 
             while (rs.next()) {
-                String quizId = rs.getString("quizID");
+                String quizId = rs.getString("quiz_id");
                 String quizName = rs.getString("quiz_name");
                 String quizType = rs.getString("quiz_type");
                 if (Objects.equals(quizType, type)) {
@@ -116,4 +120,7 @@ public class QuizSelectionScreen_student extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new QuizSelectionScreen_student(student, type));
     }
+
+
+
 }

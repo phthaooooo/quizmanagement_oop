@@ -2,6 +2,7 @@ package View;
 
 import DAO.ConnectionDatabase;
 import DAO.ResultQuery;
+import Model.Quiz;
 import Model.Result;
 import Model.Student;
 
@@ -24,10 +25,14 @@ public class FillBlankQuiz_student extends JFrame implements ActionListener {
     private String quizId;
     private static Student student;
     private Connection connection;
-
-    public FillBlankQuiz_student(String quizId, Student student) {
+    private JLabel timerLabel;
+    private Timer timer;
+    private int remainingTime;
+    private Quiz quiz;
+    public FillBlankQuiz_student(String quizId, Student student, Quiz quiz) {
         this.student = student;
         this.quizId = quizId;
+        this.quiz = quiz;
         ConnectionDatabase conn = new ConnectionDatabase();
         connection = conn.getC();
         initializeUI();
@@ -42,13 +47,45 @@ public class FillBlankQuiz_student extends JFrame implements ActionListener {
         this.mark = mark;
     }
 
-
+    private String formatTime(int timeInSeconds) {
+        int minutes = timeInSeconds / 60;
+        int seconds = timeInSeconds % 60;
+        return String.format("%02d:%02d", minutes, seconds);
+    }
     private void initializeUI() {
         setTitle("Fill in the Blank Quiz");
-        setSize(600, 300);
+        setSize(600, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
         getContentPane().setBackground(new Color(240, 240, 240));
+
+        // Thời gian ban đầu (ví dụ 5 phút = 300 giây)
+        remainingTime = 300 ;
+
+        timerLabel = new JLabel(formatTime(remainingTime), SwingConstants.CENTER);
+        timerLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        timerLabel.setBounds(450, 50, 100, 50);
+        add(timerLabel);
+
+        // Khởi tạo Timer
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Giảm thời gian còn lại
+                remainingTime--;
+                timerLabel.setText(formatTime(remainingTime));
+
+                // Nếu hết thời gian
+                if (remainingTime <= 0) {
+                    timer.stop();
+                    JOptionPane.showMessageDialog(null, "Time is up! Quiz over.");
+                    // Có thể thêm mã để dừng quiz ở đây.
+                }
+            }
+        });
+
+        // Bắt đầu đếm ngược khi chạy ứng dụng
+        timer.start();
 
         // Question Label
         questionLabel = new JLabel("");
@@ -86,7 +123,7 @@ public class FillBlankQuiz_student extends JFrame implements ActionListener {
         resultLabel.setBounds(50, 200, 500, 30);
         resultLabel.setFont(new Font("Arial", Font.BOLD, 14));
         add(resultLabel);
-
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -153,4 +190,5 @@ public class FillBlankQuiz_student extends JFrame implements ActionListener {
             loadQuestion(String.format("FB%02d", currentQuestionId));
         }
     }
+
 }

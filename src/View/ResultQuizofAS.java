@@ -8,12 +8,15 @@ import Model.Result;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
-public class ResultQuizofAS extends JFrame{
+public class ResultQuizofAS extends JFrame implements ActionListener {
     DefaultTableModel model;
+    JButton back;
     public ResultQuizofAS() {
-        setTitle("Answer Filling Quiz");
+        setTitle("All Quizzes");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -41,7 +44,10 @@ public class ResultQuizofAS extends JFrame{
         add(scrollPane, BorderLayout.CENTER);
         displayResult();
         // Footer
-
+        back = new JButton("Back");
+        back.setBounds(700, 550, 50, 30);
+        back.addActionListener(this);
+        add(back, BorderLayout.SOUTH);
         // Finalize JFrame
         setVisible(true);
     }
@@ -66,5 +72,12 @@ public class ResultQuizofAS extends JFrame{
     }
     public static void main(String[] args) {
         new ResultQuizofAS();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == back) {
+            this.dispose();
+        }
     }
 }

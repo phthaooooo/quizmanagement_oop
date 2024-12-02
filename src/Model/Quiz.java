@@ -11,20 +11,23 @@ public class Quiz {
 
     public Quiz(){
     }
-    public Quiz(String Quiz_ID, String Quiz_title, String Quiz_Type, int total_score, double score_per_question){
+    public Quiz(String Quiz_ID) {
+        this.Quiz_ID = Quiz_ID;
+    }
+    public Quiz(String Quiz_ID, String Quiz_title, String Quiz_Type, int total_score, int total_question){
         this.Quiz_ID = Quiz_ID;
         this.Quiz_title = Quiz_title;
         this.Quiz_Type = Quiz_Type;
         this.total_score = total_score;
-        this.score_per_question = score_per_question;
+        this.total_question = total_question;
 
     }
-    public Quiz(String Quiz_ID, String Quiz_title, Timestamp time, String Quiz_Type, int total_score, double score_per_question){
+    public Quiz(String Quiz_ID, String Quiz_title, Timestamp time, String Quiz_Type, int total_score,  int total_question){
         this.Quiz_ID = Quiz_ID;
         this.Quiz_title = Quiz_title;
         this.Quiz_Type = Quiz_Type;
         this.total_score = total_score;
-        this.score_per_question = score_per_question;
+        this.total_question = total_question;
         this.time = time;
     }
 

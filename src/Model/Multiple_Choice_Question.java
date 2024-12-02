@@ -3,7 +3,7 @@ package Model;
 public class Multiple_Choice_Question extends Question{
     private String quiz_id,question_id, question_text, opA, opB, opC, opD, key;
     // constructors
-    Multiple_Choice_Question(){
+    public Multiple_Choice_Question(){
         super();
     }
 

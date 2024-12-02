@@ -18,18 +18,19 @@ public class Login extends JFrame implements ActionListener {
     private static final String username_admin = "admin";
     private static final String password_admin = "admin";
     Login() {
-        getContentPane().setBackground(new Color(0, 51, 102));
+        setTitle("LOGIN");
+        getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         // heading name
         JLabel heading = new JLabel("LOGIN");
         heading.setBounds(380, 60, 300, 45);
-        heading.setFont(new Font("SansSerif", Font.BOLD + Font.ITALIC, 40));
+        heading.setFont(new Font("Monospaced", Font.BOLD + Font.ITALIC, 40));
         heading.setForeground(new Color(30, 144, 254));
         add(heading);
         //username
         JLabel username = new JLabel("username");
         username.setBounds(200, 150, 300, 20);
-        username.setFont(new Font("Arial", Font.BOLD, 18));
+        username.setFont(new Font("Monospaced", Font.BOLD, 18));
         username.setForeground(new Color(30, 144, 254));
         add(username);
 
@@ -40,7 +41,7 @@ public class Login extends JFrame implements ActionListener {
         // password
         JLabel pw = new JLabel("password");
         pw.setBounds(200, 200, 300, 20);
-        pw.setFont(new Font("Arial", Font.BOLD, 18));
+        pw.setFont(new Font("Monospaced", Font.BOLD, 18));
         pw.setForeground(new Color(30, 144, 254));
         add(pw);
 

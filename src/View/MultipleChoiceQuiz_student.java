@@ -2,10 +2,12 @@ package View;
 
 import DAO.ConnectionDatabase;
 import DAO.ResultQuery;
+import Model.Quiz;
 import Model.Result;
 import Model.Student;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
@@ -27,10 +29,11 @@ public class MultipleChoiceQuiz_student extends JFrame implements ActionListener
     private Connection connection;
     private String quizId;
     private static Student student;
-
-    public MultipleChoiceQuiz_student(String quizId, Student student) {
+    private static Quiz quiz;
+    public MultipleChoiceQuiz_student(String quizId, Student student, Quiz quiz) {
         this.student = student;
         this.quizId = quizId;
+        this.quiz = quiz;
         ConnectionDatabase conn = new ConnectionDatabase();
         connection = conn.getC();
         initializeUI();
@@ -45,14 +48,13 @@ public class MultipleChoiceQuiz_student extends JFrame implements ActionListener
         this.mark = mark;
     }
 
-
+    private Timer timer;
     private void initializeUI() {
         setTitle("Multiple Choice Quiz");
         setSize(600, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
         getContentPane().setBackground(new Color(240, 240, 240));
-
         // Question
         questionLabel = new JLabel("");
         questionLabel.setBounds(50, 50, 500, 30);
@@ -103,7 +105,7 @@ public class MultipleChoiceQuiz_student extends JFrame implements ActionListener
 
     private void loadQuestion(String questionId) {
         try {
-            String query = "SELECT * FROM mc_question WHERE quizID = ? AND questionID = ?";
+            String query = "SELECT * FROM multiplechoice WHERE quizID = ? AND questionID = ?";
             PreparedStatement pstmt = connection.prepareStatement(query);
             pstmt.setString(1, quizId);
             pstmt.setString(2, questionId);
@@ -174,4 +176,5 @@ public class MultipleChoiceQuiz_student extends JFrame implements ActionListener
             loadQuestion(String.format("MC%02d", currentQuestionId));
         }
     }
+
 }

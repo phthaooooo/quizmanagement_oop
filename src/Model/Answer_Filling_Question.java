@@ -11,8 +11,6 @@ public class Answer_Filling_Question extends Question{
        super(question_text);
         this.quiz_id = quiz_id;
         this.question_id = question_id;
-
-
         this.key = key;
     }
 

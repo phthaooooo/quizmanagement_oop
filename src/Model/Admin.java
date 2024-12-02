@@ -9,4 +9,4 @@ public class Admin extends User{
         super(UserName, password, role);
         this.setRole("Admin");
     }
-    }
+}

@@ -17,7 +17,7 @@ public class AllQuiz extends JFrame implements ActionListener {
     DefaultTableModel model;
     public AllQuiz() {
 
-        frame = new JFrame("Multiple Choice") ;
+        frame = new JFrame("All Quizzes") ;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 700);
         frame.setLayout(null);
@@ -30,6 +30,7 @@ public class AllQuiz extends JFrame implements ActionListener {
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(20, 20, 950, 200);
         frame.add(scrollPane);
+
         back = new JButton("Back");
         back.setBounds(700, 550, 150, 30);
         back.addActionListener(this);
