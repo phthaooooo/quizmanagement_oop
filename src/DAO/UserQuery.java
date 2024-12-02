@@ -1,6 +1,5 @@
 package DAO;
 
-import Model.Student;
 import Model.Teacher;
 import Model.User;
 
@@ -57,10 +56,7 @@ public class UserQuery {
                 String role = rs.getString("role");
                 if ("Teacher".equals(role)) {
                     user = new Teacher(rs.getString("username"), rs.getString("password"), rs.getString("role"));
-                }
-                if ("Student".equals(role)) {
-                    user = new Student(rs.getString("username"), rs.getString("password"), rs.getString("role"));
-                }else {
+                } else {
                     user = new User();
                     user.setUserName(rs.getString("username"));
                     user.setPassword(rs.getString("password"));
@@ -72,4 +68,5 @@ public class UserQuery {
         }
         return user;
     }
+
 }
