@@ -61,12 +61,12 @@ public class UserQuery {
                 if ("Student".equals(role)) {
                     user = new Student(rs.getString("username"), rs.getString("password"), rs.getString("role"));
                 }
-                else {
-                    user = new User();
-                    user.setUserName(rs.getString("username"));
-                    user.setPassword(rs.getString("password"));
-                    user.setRole(rs.getString("role"));
-                }
+//                else {
+//                    user = new User();
+//                    user.setUserName(rs.getString("username"));               bỏ phần này đi thì k bị lỗi:)
+//                    user.setPassword(rs.getString("password"));
+//                    user.setRole(rs.getString("role"));
+//                }
             }
         } catch (Exception e){
             e.printStackTrace();
