@@ -30,8 +30,8 @@ public class QuestionQuery {
     }
 
     public static boolean insertAS(Answer_Filling_Question s) {
-        String query = "insert into answerfilling(question_id, quiz_id, correct_answer)" +
-                "values (?, ?, ?)";
+        String query = "insert into answerfilling(question_id, quiz_id,question_text, correct_answer)" +
+                "values (?, ?, ?, ?)";
         try{
             ConnectionDatabase cdb = new ConnectionDatabase();
 

@@ -87,13 +87,13 @@ class fillQuizSelectionScreen extends JFrame {
         quizIdMap = new HashMap<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT DISTINCT quizID, quiz_name, quiz_type FROM quiz");
+            ResultSet rs = stmt.executeQuery("SELECT DISTINCT quiz_id, quiz_name, quiz_type FROM quiztable");
 
             while (rs.next()) {
-                String quizId = rs.getString("quizID");
+                String quizId = rs.getString("quiz_id");
                 String quizName = rs.getString("quiz_name");
                 String quizType = rs.getString("quiz_type");
-                if (Objects.equals(quizType, "fillblank")) {
+                if (Objects.equals(quizType, "Answer Filling")) {
                     listModel.addElement(quizName);
                     quizIdMap.put(quizName, quizId);
                 }
@@ -192,7 +192,7 @@ public class FillBlankQuiz extends JFrame implements ActionListener {
 
     private void loadQuestion(String questionId) {
         try {
-            String query = "SELECT question, answer FROM fill_question WHERE quizID = ? AND questionID = ?";
+            String query = "SELECT question_text, correct_answer FROM answerfilling WHERE quiz_id = ? and question_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(query);
             pstmt.setString(1, quizId);
             pstmt.setString(2, questionId);
@@ -202,8 +202,8 @@ public class FillBlankQuiz extends JFrame implements ActionListener {
             if (rs.next()) {
                 submitButton.setEnabled(true);
                 answerField.setEnabled(true);
-                questionLabel.setText(rs.getString("question"));
-                correctAnswer = rs.getString("answer");
+                questionLabel.setText(rs.getString("question_text"));
+                correctAnswer = rs.getString("correct_answer");
                 answerField.setText("");
                 resultLabel.setText("");
                 question_count++;
@@ -212,7 +212,7 @@ public class FillBlankQuiz extends JFrame implements ActionListener {
                 setMark((double) true_ans / question_count * 10);
                 String massage = "Quiz completed!\n" + String.format("Result: %.2f", getMark());
                 JOptionPane.showMessageDialog(this, massage);
-                Result res = new Result(student.getUserName(), quizId, "fillblank", question_count, true_ans, mark);
+                Result res = new Result(student.getUserName(), quizId, "Answer Filling", question_count, true_ans, mark);
                 ResultQuery.insertResult(res);
                 dispose();
                 new fillQuizSelectionScreen(student);

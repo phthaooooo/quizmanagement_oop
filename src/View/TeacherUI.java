@@ -56,11 +56,7 @@ public class TeacherUI extends JFrame implements ActionListener {
         ImageIcon iconStuRes = new ImageIcon("medical-result.png");
         stuRes.setIcon(iconStuRes);
         menubar.add(stuRes);
-        JMenuItem stuResMCItem = new JMenuItem("Multiple Choice Quiz");
-        stuRes.setIcon(iconStuRes);
-        stuResMCItem.addActionListener(this);
-        stuRes.add(stuResMCItem);
-        JMenuItem stuResASItem = new JMenuItem("Answer Filling Quiz");
+        JMenuItem stuResASItem = new JMenuItem("All Results");
         stuRes.setIcon(iconStuRes);
         stuResASItem.addActionListener(this);
         stuRes.add(stuResASItem);
@@ -108,13 +104,17 @@ public class TeacherUI extends JFrame implements ActionListener {
             new createQuizUI(text);
         } else if (text.equals("Answer Filling")) {
             new createQuizUI(text);
-        } else if (text.equals("Multiple Choice Quiz")) {
-            new ResultQuizofAS();
-        } else if (text.equals("Answer Filling Quiz")) {
+        }  else if (text.equals("All Results")) {
             new ResultQuizofAS();
         } else if (text.equals("All Quiz Created")) {
             //new TeacherUI(teacher).setVisible(true);
             new AllQuiz();
+        } else if(e.getSource() == search) {
+            String searchContent = searchQuiz.getText();
+            new UpdateQuiz(searchContent);
+        }  else if (text.equals("Log Out")) {
+            setVisible(false);
+            new Login();
         }
     }
 }

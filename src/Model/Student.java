@@ -2,9 +2,12 @@ package Model;
 
 public class Student extends User
 {
-    public Student(String fullName, String userName, String password)
+    public Student(){
+        super();
+    }
+    public Student(String userName, String password, String role)
     {
-        super(fullName, userName, password);
+        super(userName, password, role);
         this.setRole("Student");
     }
 }
