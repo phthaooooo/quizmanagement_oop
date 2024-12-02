@@ -83,9 +83,4 @@ public class Quiz {
     public void setTime(Timestamp time) {
         this.time = time;
     }
-
-    @Override
-    public String toString() {
-        return Quiz_ID + " " + Quiz_title + " " + time.toString() + " " + Quiz_Type + " " + total_question + " " + total_score;
-    }
 }
