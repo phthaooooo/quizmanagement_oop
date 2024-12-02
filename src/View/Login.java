@@ -102,7 +102,7 @@ public class Login extends JFrame implements ActionListener {
                     var loginUser = UserQuery.selectByAccount(username, password);
                     if(loginUser != null) {
                         this.dispose();
-                        if(loginUser.getRole().equals("Teacher")) {
+                        if(loginUser.getRole().equals("Teacher") && loginUser instanceof Teacher) {
                             Teacher teacher = (Teacher) loginUser;
                             new TeacherUI(teacher);
                         }
