@@ -134,6 +134,8 @@ public class Register extends JFrame implements ActionListener {
                             "Notification",
                             JOptionPane.INFORMATION_MESSAGE
                     );
+                    this.dispose();
+                    new Login();
                 } else {
                     JOptionPane.showMessageDialog(
                             this,

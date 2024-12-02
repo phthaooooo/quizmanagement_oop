@@ -47,15 +47,23 @@ public class TeacherUI extends JFrame implements ActionListener {
         ImageIcon iconAllQuiz = new ImageIcon("grid.png");
         allQuiz.setIcon(iconAllQuiz);
         menubar.add(allQuiz);
+        JMenuItem allquiz = new JMenuItem("All Quiz Created");
+        allquiz.setIcon(iconAllQuiz);
+        allquiz.addActionListener(this);
+        allQuiz.add(allquiz);
 
         stuRes = new JMenu("Student Result");
         ImageIcon iconStuRes = new ImageIcon("medical-result.png");
         stuRes.setIcon(iconStuRes);
         menubar.add(stuRes);
-        JMenuItem stuResItem = new JMenuItem("Multiple Choice Quiz");
+        JMenuItem stuResMCItem = new JMenuItem("Multiple Choice Quiz");
         stuRes.setIcon(iconStuRes);
-        stuResItem.addActionListener(this);
-        stuRes.add(stuResItem);
+        stuResMCItem.addActionListener(this);
+        stuRes.add(stuResMCItem);
+        JMenuItem stuResASItem = new JMenuItem("Answer Filling Quiz");
+        stuRes.setIcon(iconStuRes);
+        stuResASItem.addActionListener(this);
+        stuRes.add(stuResASItem);
 
         logOut = new JMenu("Log Out");
         ImageIcon iconLogOut = new ImageIcon("logout.png");
@@ -100,8 +108,13 @@ public class TeacherUI extends JFrame implements ActionListener {
             new createQuizUI(text);
         } else if (text.equals("Answer Filling")) {
             new createQuizUI(text);
-        } else if (text.equals("All Student Result")) {
-           // new StudentResultUI();
+        } else if (text.equals("Multiple Choice Quiz")) {
+            new ResultQuizofAS();
+        } else if (text.equals("Answer Filling Quiz")) {
+            new ResultQuizofAS();
+        } else if (text.equals("All Quiz Created")) {
+            //new TeacherUI(teacher).setVisible(true);
+            new AllQuiz();
         }
     }
 }

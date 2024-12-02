@@ -21,10 +21,9 @@ public class AllQuiz extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 700);
         frame.setLayout(null);
-        String[] columnNames = {"Quiz ID", "Quiz Name", "Date Created", "Quiz Type"};
+        String[] columnNames = {"Quiz ID", "Quiz Name", "Date Created", "Quiz Type", "Total Score", "Total Question"};
         model = new DefaultTableModel(columnNames, 0);
         Object[][] data = {
-                {"Q01", "Technology", "2024-12-10", "multiple choice"}
         };
         //model = new DefaultTableModel(data, columnNames);
         JTable table = new JTable(model);
@@ -51,6 +50,7 @@ public class AllQuiz extends JFrame implements ActionListener {
             Object[] rowData = {
                     quiz.getQuiz_ID(),
                     quiz.getQuiz_title(),
+                    quiz.getTime(),
                     quiz.getQuiz_Type(),
                     quiz.getTotal_score(),
                     quiz.getTotal_question()

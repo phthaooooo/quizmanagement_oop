@@ -1,19 +1,31 @@
 package Model;
 
+import java.sql.Timestamp;
+
 public class Quiz {
     private String Quiz_ID, Quiz_title, Quiz_Type;
     private int total_question;
     private int total_score;
     private double score_per_question;
+    private Timestamp time;
 
     public Quiz(){
     }
-    public Quiz(String Quiz_ID, String Quiz_title,String Quiz_Type, int total_score, double score_per_question){
+    public Quiz(String Quiz_ID, String Quiz_title, String Quiz_Type, int total_score, double score_per_question){
         this.Quiz_ID = Quiz_ID;
         this.Quiz_title = Quiz_title;
         this.Quiz_Type = Quiz_Type;
         this.total_score = total_score;
         this.score_per_question = score_per_question;
+
+    }
+    public Quiz(String Quiz_ID, String Quiz_title, Timestamp time, String Quiz_Type, int total_score, double score_per_question){
+        this.Quiz_ID = Quiz_ID;
+        this.Quiz_title = Quiz_title;
+        this.Quiz_Type = Quiz_Type;
+        this.total_score = total_score;
+        this.score_per_question = score_per_question;
+        this.time = time;
     }
 
     public String getQuiz_ID() {
@@ -64,8 +76,16 @@ public class Quiz {
         Quiz_Type = quiz_Type;
     }
 
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
     @Override
     public String toString() {
-        return Quiz_ID + " " + Quiz_title + " " + Quiz_Type + " " + total_question + " " + total_score;
+        return Quiz_ID + " " + Quiz_title + " " + time.toString() + " " + Quiz_Type + " " + total_question + " " + total_score;
     }
 }

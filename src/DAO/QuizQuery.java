@@ -37,6 +37,7 @@ public class QuizQuery {
                         new Quiz(
                                 resultSet.getString("quiz_id"),
                                 resultSet.getString("quiz_name"),
+                                resultSet.getTimestamp("date_created"),
                                 resultSet.getString("quiz_type"),
                                 resultSet.getInt("total_score"),
                                 (double) resultSet.getInt("total_score")/ resultSet.getInt("total_question")
