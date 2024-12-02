@@ -6,12 +6,12 @@ import java.awt.*;
 import java.sql.*;
 import java.awt.event.*;
 
-public class RemoveUserUI extends JFrame implements ActionListener {
+public class RemoveUserUI_Admin extends JFrame implements ActionListener {
     
     Choice cUsername;
     JButton delete, back;
     
-    RemoveUserUI() {
+    RemoveUserUI_Admin() {
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
@@ -116,6 +116,6 @@ public class RemoveUserUI extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new RemoveUserUI();
+        new RemoveUserUI_Admin();
     }
 }

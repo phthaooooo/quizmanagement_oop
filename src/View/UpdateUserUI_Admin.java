@@ -6,14 +6,14 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class UpdateUserUI extends JFrame implements ActionListener{
+public class UpdateUserUI_Admin extends JFrame implements ActionListener{
     
     JTextField tfpassword;
     JComboBox cbroles;
     JButton add, back;
     String username;
     
-    public UpdateUserUI(String username) {
+    public UpdateUserUI_Admin(String username) {
         this.username = username;
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
@@ -107,6 +107,6 @@ public class UpdateUserUI extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-        new UpdateUserUI("");
+        new UpdateUserUI_Admin("");
     }
 }

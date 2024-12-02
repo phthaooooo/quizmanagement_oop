@@ -7,13 +7,13 @@ import java.sql.*;
 import net.proteanit.sql.DbUtils;
 import java.awt.event.*;
 
-public class ViewUserUI extends JFrame implements ActionListener{
+public class ViewUserUI_Admin extends JFrame implements ActionListener{
 
     JTable table;
     Choice cUsername;
     JButton search, update, back;
     
-    ViewUserUI() {
+    ViewUserUI_Admin() {
         
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
@@ -82,13 +82,13 @@ public class ViewUserUI extends JFrame implements ActionListener{
             }
         } else if (ae.getSource() == update) {
             setVisible(false);
-            new UpdateUserUI(cUsername.getSelectedItem());
+            new UpdateUserUI_Admin(cUsername.getSelectedItem());
         } else {
             setVisible(false);
         }
     }
 
     public static void main(String[] args) {
-        new ViewUserUI();
+        new ViewUserUI_Admin();
     }
 }

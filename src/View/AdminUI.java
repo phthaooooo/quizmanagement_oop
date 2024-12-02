@@ -101,11 +101,11 @@ public class AdminUI extends JFrame implements ActionListener {
         String text = e.getActionCommand(); 
 
         if(text.equals("Create")) {
-            new CreateUserUI();
+            new CreateUserUI_Admin();
         } else if (text.equals("Remove")) {
-            new RemoveUserUI();
+            new RemoveUserUI_Admin();
         } else if(text.equals("View")) {
-            new ViewUserUI();
+            new ViewUserUI_Admin();
         } else if(text.equals("Multiple Choice")) {
             new createQuizUI(text);
         } else if (text.equals("Answer Filling")) {

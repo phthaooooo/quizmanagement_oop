@@ -6,12 +6,12 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.event.*;
 
-public class CreateUserUI extends JFrame implements ActionListener{
+public class CreateUserUI_Admin extends JFrame implements ActionListener{
     JTextField tfusername, tfpassword;
     JComboBox cbroles;
     JButton add, back;
     
-    CreateUserUI() {
+    CreateUserUI_Admin() {
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
@@ -96,6 +96,6 @@ public class CreateUserUI extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-        new CreateUserUI();
+        new CreateUserUI_Admin();
     }
 }
