@@ -2,6 +2,7 @@ package View;
 
 import DAO.UserQuery;
 import Model.Admin;
+import Model.Student;
 import Model.Teacher;
 
 import javax.swing.*;
@@ -106,6 +107,10 @@ public class Login extends JFrame implements ActionListener {
                             Teacher teacher = (Teacher) loginUser;
                             new TeacherUI(teacher);
                         }
+                        if(loginUser.getRole().equals("Student") && loginUser instanceof Student) {
+                            Student student = (Student) loginUser;
+                            new StudentUI(student);
+                        }
                     } else {
                         JOptionPane.showMessageDialog(
                                 this,
@@ -118,8 +123,6 @@ public class Login extends JFrame implements ActionListener {
                     }
                 }
             }
-
-
         }
     }
 }
