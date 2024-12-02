@@ -86,13 +86,12 @@ public class TeacherUI extends JFrame implements ActionListener {
         add(menubar, BorderLayout.NORTH);
         //setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
-
-
     }
 
     public static void main(String[] args) {
         new TeacherUI(teacher);
     }
+
     @Override
     public void actionPerformed (ActionEvent e) {
         String text = e.getActionCommand();
@@ -103,8 +102,7 @@ public class TeacherUI extends JFrame implements ActionListener {
             new createQuizUI(text);
         } else if (text.equals("All Student Result")) {
            // new StudentResultUI();
-        } 
-
+        }
     }
 }
 
