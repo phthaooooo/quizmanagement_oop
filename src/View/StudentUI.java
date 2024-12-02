@@ -63,9 +63,9 @@ public class StudentUI extends JFrame implements ActionListener {
         String text = e.getActionCommand();
 
         if (text.equals("Multiple Choice Question")) {
-            new QuizSelectionScreen(student);
+            new QuizSelectionScreen_student(student, "multiplechoice");
         } else if (text.equals("Answer Filling Question")) {
-            new fillQuizSelectionScreen(student);
+            new QuizSelectionScreen_student(student, "fillblank");
         }
     }
 }
