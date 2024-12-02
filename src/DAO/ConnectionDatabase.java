@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class ConnectionDatabase {
-    Connection c;
-    Statement s;
+    public Connection c;
+    public Statement s;
 
     public ConnectionDatabase() {
         try {

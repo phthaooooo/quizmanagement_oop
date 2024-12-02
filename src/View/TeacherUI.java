@@ -1,11 +1,10 @@
 package View;
 
 import Model.Teacher;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class TeacherUI extends JFrame implements ActionListener {
     // Các nút trong thanh điều hướng
@@ -104,7 +103,7 @@ public class TeacherUI extends JFrame implements ActionListener {
             new createQuizUI(text);
         } else if (text.equals("All Student Result")) {
            // new StudentResultUI();
-        }
+        } 
 
     }
 }
