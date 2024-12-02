@@ -21,4 +21,10 @@ public class ConnectionDatabase {
     public Connection getC() {
         return c;
     }
+
+    public void setC(Connection c) {
+        this.c = c;
+    }
 }
+
+

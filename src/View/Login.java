@@ -98,7 +98,7 @@ public class Login extends JFrame implements ActionListener {
                 if (username.equals(username_admin) && password.equals(password_admin)) {
                     var admin = new Admin(username_admin, password_admin, "admin");
                     this.dispose();
-                    //new AdminUI(admin);
+                    new AdminUI();
                 } else {
                     var loginUser = UserQuery.selectByAccount(username, password);
                     if(loginUser != null) {
