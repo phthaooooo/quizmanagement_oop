@@ -17,4 +17,8 @@ public class ConnectionDatabase {
             e.printStackTrace();
         }
     }
+
+    public Connection getC() {
+        return c;
+    }
 }
