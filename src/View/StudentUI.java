@@ -13,64 +13,94 @@ import java.util.List;
 
 public class StudentUI extends JFrame implements ActionListener {
     // Các nút trong thanh điều hướng
-    JMenu takeQuiz, logOut;
+    // Buttons
+    JButton btnTakeQuiz, btnLogOut, btnResult;
+    JPopupMenu quizMenu;
     private static Student student;
-    DefaultTableModel model;
     public StudentUI(Student student) {
         this.student = student;
-        // Thiết lập JFrame
-        setTitle("STUDENT");
+        // Setup JFrame
+        setTitle("Student Portal");
         setSize(900, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        // icon frame
-        ImageIcon iconStudent = new ImageIcon("image/Student.png");
-        setIconImage(iconStudent.getImage());
 
-        JMenuBar menubar = new JMenuBar();
-        setJMenuBar(menubar);
+        // Header - Title
+        JLabel headerLabel = new JLabel("Welcome to the Student Portal!", JLabel.CENTER);
+        headerLabel.setFont(new Font("Serif", Font.BOLD, 24));
+        headerLabel.setForeground(new Color(33, 37, 41)); // Dark gray
+        headerLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+        add(headerLabel, BorderLayout.NORTH);
 
-        takeQuiz = new JMenu("Take Quiz");
-        ImageIcon iconTakeQuiz = new ImageIcon("image/speech-bubble_17221393.png");
-        takeQuiz.setIcon(iconTakeQuiz);
-        menubar.add(takeQuiz);
+        // Create Buttons
+        btnTakeQuiz = new JButton("Take Quiz");
+        btnTakeQuiz.setFont(new Font("Serif", Font.PLAIN, 14));
+        btnTakeQuiz.setPreferredSize(new Dimension(150, 40));
+        btnTakeQuiz.setBackground(new Color(72, 149, 239)); // Light blue
+        btnTakeQuiz.setForeground(Color.WHITE);
+        btnTakeQuiz.setFocusPainted(false);
+        btnTakeQuiz.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnTakeQuiz.addActionListener(this);
 
-        JMenuItem mcQuestion = new JMenuItem("Multiple Choice Question");
-        mcQuestion.addActionListener(this);
-        ImageIcon icMCQuestion = new ImageIcon("image/option.png");
-        mcQuestion.setIcon(icMCQuestion);
-        takeQuiz.add(mcQuestion);
+        btnResult = new JButton("My Result");
+        btnResult.setFont(new Font("Serif", Font.PLAIN, 14));
+        btnResult.setPreferredSize(new Dimension(150, 40));
+        btnResult.setBackground(new Color(72, 149, 239)); // Light blue
+        btnResult.setForeground(Color.WHITE);
+        btnResult.setFocusPainted(false);
+        btnResult.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnResult.addActionListener(this);
 
-        JMenuItem answerFillingQuestion = new JMenuItem("Answer Filling Question");
-        answerFillingQuestion.addActionListener(this);
-        ImageIcon icAnswerFillingQuestion = new ImageIcon("image/answer.png");
-        answerFillingQuestion.setIcon(icAnswerFillingQuestion);
-        takeQuiz.add(answerFillingQuestion);
+        btnLogOut = new JButton("Log Out");
+        btnLogOut.setFont(new Font("Serif", Font.PLAIN, 14));
+        btnLogOut.setPreferredSize(new Dimension(150, 40));
+        btnLogOut.setBackground(new Color(220, 53, 69)); // Red
+        btnLogOut.setForeground(Color.WHITE);
+        btnLogOut.setFocusPainted(false);
+        btnLogOut.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnLogOut.addActionListener(this);
 
-        String[] columnNames = {"Quiz ID", "Quiz Name", "Date Created", "Quiz Type", "Total Score", "Total Question"};
-        model = new DefaultTableModel(columnNames, 0);
-        Object[][] data = {
-        };
-        //model = new DefaultTableModel(data, columnNames);
-        JTable table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(20, 20, 950, 200);
-        add(scrollPane);
+        // Add Buttons to a Centered Panel
+        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        buttonPanel.setBackground(new Color(248, 249, 250)); // Light gray background
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
 
-        logOut = new JMenu("Log Out");
-        ImageIcon iconLogOut = new ImageIcon("image/logout.png");
-        logOut.setIcon(iconLogOut);
-        menubar.add(logOut);
-        JMenuItem logOutItem = new JMenuItem("Log Out");
-        logOutItem.setIcon(iconLogOut);
-        logOutItem.addActionListener(this);
-        logOut.add(logOutItem);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        buttonPanel.add(btnTakeQuiz, gbc);
 
-        displayQuiz();
-        add(menubar, BorderLayout.NORTH);
+
+        gbc.gridy = 1;
+        buttonPanel.add(btnResult, gbc);
+
+        gbc.gridy = 2;
+        buttonPanel.add(btnLogOut, gbc);
+
+        add(buttonPanel, BorderLayout.CENTER);
+
+        // Footer - Info
+        JLabel footerLabel = new JLabel("© 2024 Student Management System", JLabel.CENTER);
+        footerLabel.setFont(new Font("Serif", Font.PLAIN, 12));
+        footerLabel.setForeground(new Color(108, 117, 125)); // Muted gray
+        footerLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        add(footerLabel, BorderLayout.SOUTH);
+
+        // Quiz Menu
+        quizMenu = new JPopupMenu();
+
+        JMenuItem multipleChoiceOption = new JMenuItem("Multiple Choice Question");
+        multipleChoiceOption.addActionListener(e -> new QuizSelectionScreen_student(student, "Multiple Choice"));
+        quizMenu.add(multipleChoiceOption);
+
+        JMenuItem answerFillingOption = new JMenuItem("Answer Filling Question");
+        answerFillingOption.addActionListener(e -> new QuizSelectionScreen_student(student, "Answer Filling"));
+        quizMenu.add(answerFillingOption);
+
+        // Finalize JFrame
         setVisible(true);
     }
-    private void displayQuiz() {
+    /*private void displayQuiz() {
         List<Quiz> quizzes = QuizQuery.selectAll();
 
         // Xóa tất cả các hàng hiện tại khỏi model (nếu có)
@@ -88,14 +118,14 @@ public class StudentUI extends JFrame implements ActionListener {
             };
             model.addRow(rowData);
         }
-    }
+    }*/
     public static void main(String[] args) {
         new StudentUI(student);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String text = e.getActionCommand();
+        /*String text = e.getActionCommand();
 
         if (text.equals("Multiple Choice Question")) {
             new QuizSelectionScreen_student(student, "Multiple Choice");
@@ -105,6 +135,24 @@ public class StudentUI extends JFrame implements ActionListener {
         else if (text.equals("Log Out")) {
             setVisible(false);
             new Login();
+        }*/
+        if (e.getSource() == btnTakeQuiz) {
+            // Show quiz options
+            quizMenu.show(btnTakeQuiz, btnTakeQuiz.getWidth() / 2, btnTakeQuiz.getHeight() / 2);
+        } else if (e.getSource() == btnResult) {
+            new ResultQuizofAS1(student);
+        } else if (e.getSource() == btnLogOut) {
+            int response = JOptionPane.showConfirmDialog(
+                    this,
+                    "Are you sure you want to log out?",
+                    "Confirm Log Out",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (response == JOptionPane.YES_OPTION) {
+                System.exit(0); // Exit the program
+            }
         }
     }
 }
