@@ -81,7 +81,7 @@ public class QuizSelectionScreen_student extends JFrame {
 
             if (selectedQuiz != null && quizIdMap.containsKey(selectedQuiz)) {
                 dispose();
-                if (Objects.equals(type, "multiplechoice"))
+                if (Objects.equals(type, "Multiple Choice"))
                 {
                     new MultipleChoiceQuiz_student(quizIdMap.get(selectedQuiz), student, new Quiz(quizIdMap.get(selectedQuiz)));
                 }

@@ -98,7 +98,7 @@ public class MultipleChoice extends JFrame implements ActionListener {
         clear.addActionListener(this);
         inputPanel.add(clear);
         // thêm các component vào inputPanel
-
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         //them inputPanel vào cửa sổ
         frame.add(inputPanel);
         frame.setVisible(true);
@@ -134,6 +134,14 @@ public class MultipleChoice extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(
                             this,
                             "Added question successfully",
+                            "Notification",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }
+                else {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Trùng câu hỏi",
                             "Notification",
                             JOptionPane.INFORMATION_MESSAGE
                     );

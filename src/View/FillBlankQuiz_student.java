@@ -153,7 +153,7 @@ public class FillBlankQuiz_student extends JFrame implements ActionListener {
                 Result res = new Result(student.getUserName(), quizId, "Answer Filling", question_count, true_ans, mark);
                 ResultQuery.insertResult(res);
                 dispose();
-                new QuizSelectionScreen_student(student, "fillblank");
+                new QuizSelectionScreen_student(student, "Answer Filling");
             }
 
         } catch (SQLException e) {

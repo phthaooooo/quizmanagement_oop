@@ -105,7 +105,7 @@ public class MultipleChoiceQuiz_student extends JFrame implements ActionListener
 
     private void loadQuestion(String questionId) {
         try {
-            String query = "SELECT * FROM multiplechoice WHERE quizID = ? AND questionID = ?";
+            String query = "SELECT question_text, option_a, option_b, option_c, option_d, correct_answer FROM multiplechoice WHERE quiz_id = ? AND question_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(query);
             pstmt.setString(1, quizId);
             pstmt.setString(2, questionId);
@@ -114,12 +114,12 @@ public class MultipleChoiceQuiz_student extends JFrame implements ActionListener
 
             if (rs.next()) {
                 submitButton.setEnabled(true);
-                questionLabel.setText(rs.getString("question"));
-                options[0].setText(rs.getString("op1"));
-                options[1].setText(rs.getString("op2"));
-                options[2].setText(rs.getString("op3"));
-                options[3].setText(rs.getString("op4"));
-                correctAnswer = rs.getString("key_question");
+                questionLabel.setText(rs.getString("question_text"));
+                options[0].setText(rs.getString("option_a"));
+                options[1].setText(rs.getString("option_b"));
+                options[2].setText(rs.getString("option_c"));
+                options[3].setText(rs.getString("option_d"));
+                correctAnswer = rs.getString("correct_answer");
                 question_count++;
                 buttonGroup.clearSelection();
                 resultLabel.setText("");
@@ -128,10 +128,10 @@ public class MultipleChoiceQuiz_student extends JFrame implements ActionListener
                 setMark((double) true_answer / question_count * 10);
                 String massage = "Quiz completed!\n" + String.format("Result: %.2f", getMark());
                 JOptionPane.showMessageDialog(this, massage);
-                Result res = new Result(student.getUserName(), quizId, "multiplechoice", question_count, true_answer, mark);
+                Result res = new Result(student.getUserName(), quizId, "Multiple Choice", question_count, true_answer, mark);
                 ResultQuery.insertResult(res);
                 dispose();
-                new QuizSelectionScreen_student(student,  "multiplechoice");
+                new QuizSelectionScreen_student(student,  "Multiple Choice");
             }
         } catch (SQLException e) {
             e.printStackTrace();

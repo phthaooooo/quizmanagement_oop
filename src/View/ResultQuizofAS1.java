@@ -31,7 +31,7 @@ public class ResultQuizofAS1 extends JFrame {
         add(headerPanel, BorderLayout.NORTH);
 
         // Body - Answer Filling Table
-        String[] columnNames = {"Quiz ID", "Quiz Type", "Result", "Score"};
+        String[] columnNames = {"Quiz ID", "Quiz Type", "Correct Answer", "Score"};
         Object[][] data = {
         };
         model = new DefaultTableModel(columnNames, 0);
@@ -63,12 +63,11 @@ public class ResultQuizofAS1 extends JFrame {
         // Duyệt qua danh sách câu đố và thêm từng câu đố vào model
         for (Result r : results) {
             Object[] rowData = {
-                    r.getStudent_id(),
+                    r.getQuiz_id(),
                     r.getQuiz_type(),
-                    r.getTotal_question(),
                     r.getCorrect_answer(),
                     r.getScore(),
-                    r.getQuiz_id()
+
             };
             model.addRow(rowData);
         }

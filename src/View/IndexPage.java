@@ -10,7 +10,7 @@ public class IndexPage extends JFrame implements ActionListener {
     JButton login, register, exit;
 
     IndexPage() {
-        getContentPane().setBackground(new Color(0, 51, 102));
+        getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         // heading name
         JLabel heading = new JLabel("LetsQuiz");

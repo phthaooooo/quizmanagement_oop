@@ -47,7 +47,7 @@ public class CreateUserUI_Admin extends JFrame implements ActionListener{
         labelrole.setFont(new Font("serif", Font.PLAIN, 20));
         add(labelrole);
         
-        String roles[] = {"Admin", "Teacher", "Student"};
+        String roles[] = {"Teacher", "Student"};
         cbroles = new JComboBox(roles);
         cbroles.setBackground(Color.WHITE);
         cbroles.setBounds(250, 200, 200, 30);
